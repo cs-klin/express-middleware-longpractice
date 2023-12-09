@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 
-app.use(express.json())
+app.use(express.json());//add express.json middleware
+
+require('express-async-errors');// add require
 
 
 // For testing purposes, GET /
@@ -22,7 +24,7 @@ app.get('/test-error', async (req, res) => {
   throw new Error("Hello World!")
 });
 
-
+//error handler for async routes
 app.use((err,req,res,next) => {
   console.error(err.stack)
   res.status(500).send("Error: Hello World!")
