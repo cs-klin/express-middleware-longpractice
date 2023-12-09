@@ -3,7 +3,7 @@ const app = express();
 
 app.use(express.json());//add express.json middleware
 
-require('express-async-errors');// add require
+require('express-async-errors');// import express-async-errors' package
 
 
 // For testing purposes, GET /
