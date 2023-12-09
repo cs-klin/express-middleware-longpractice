@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+app.use(express.json())
+
+
 // For testing purposes, GET /
 app.get('/', (req, res) => {
   res.json("Express server running. No content provided at root level. Please use another route.");
@@ -18,6 +21,13 @@ app.post('/test-json', (req, res, next) => {
 app.get('/test-error', async (req, res) => {
   throw new Error("Hello World!")
 });
+
+
+app.use((err,req,res,next) => {
+  console.error(err.stack)
+  res.status(500).send("Error: Hello World!")
+})
+
 
 const port = 5000;
 app.listen(port, () => console.log('Server is listening on port', port));
